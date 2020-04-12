@@ -20,34 +20,42 @@ public class PlayerManager : MonoBehaviourPunCallbacks
     bool jumpInput = false;
     bool isGrounded;
     public TextMeshProUGUI playerName;
+    public Transform playerCamera;
     void Awake()
     {
         //Cursor.lockState = CursorLockMode.Locked;
-
-        inputActions = new PlayerInputActions();
-        inputActions.PlayerActions.Move.performed += ctx => movementInput = ctx.ReadValue<Vector2>();
-        inputActions.PlayerActions.Move.canceled += ctx => movementInput = ctx.ReadValue<Vector2>();
-        inputActions.PlayerActions.Look.performed += ctx => lookInput = ctx.ReadValue<Vector2>();
-        inputActions.PlayerActions.Look.canceled += ctx => lookInput = ctx.ReadValue<Vector2>();
-        inputActions.PlayerActions.Jump.canceled += ctx => jumpInput = true;
-        body = GetComponent<Rigidbody>();
-        bodyRotation = transform.rotation;
-        isGrounded = false;
+        if (photonView.IsMine)
+        {
+            inputActions = new PlayerInputActions();
+            inputActions.PlayerActions.Move.performed += ctx => movementInput = ctx.ReadValue<Vector2>();
+            inputActions.PlayerActions.Move.canceled += ctx => movementInput = ctx.ReadValue<Vector2>();
+            inputActions.PlayerActions.Look.performed += ctx => lookInput = ctx.ReadValue<Vector2>();
+            inputActions.PlayerActions.Look.canceled += ctx => lookInput = ctx.ReadValue<Vector2>();
+            inputActions.PlayerActions.Jump.canceled += ctx => jumpInput = true;
+            body = GetComponent<Rigidbody>();
+            isGrounded = false;
+            bodyRotation = transform.rotation;
+        }
+        if (!photonView.IsMine)
+            playerCamera.gameObject.SetActive(false);
     }
 
     void Start()
     {
-        playerName.text = photonView.Owner.NickName;
+        if (photonView.IsMine)
+            playerName.text = photonView.Owner.NickName;
     }
 
     public override void OnEnable()
     {
-        inputActions.Enable();
+        if (photonView.IsMine)
+            inputActions.Enable();
     }
 
     public override void OnDisable()
     {
-        inputActions.Disable();
+        if (photonView.IsMine)
+            inputActions.Disable();
     }
 
     void FixedUpdate()
@@ -81,7 +89,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Ground")
+        if(collision.gameObject.tag == "Ground" && photonView.IsMine)
             isGrounded = true;
     }
 }
