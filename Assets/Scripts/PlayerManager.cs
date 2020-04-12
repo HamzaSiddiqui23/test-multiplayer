@@ -81,8 +81,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks
         }
         jumpInput = false;
 
-        Debug.Log(movementInput);
-
         transform.rotation = Quaternion.Lerp(transform.rotation, bodyRotation, lerpSpeed);
 
     }

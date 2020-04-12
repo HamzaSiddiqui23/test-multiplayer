@@ -373,6 +373,7 @@ MonoBehaviour:
   jumpPower: 10
   lerpSpeed: 3
   playerName: {fileID: 5584400106038514870}
+  playerCamera: {fileID: 5584400105828727241}
 --- !u!54 &5584400106935036580
 Rigidbody:
   m_ObjectHideFlags: 0
