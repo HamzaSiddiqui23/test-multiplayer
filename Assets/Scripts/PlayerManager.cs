@@ -13,6 +13,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks
     public float moveVelocity;
     public float lookVelocity;
     public float jumpPower;
+    public float bulletSpeed;
     public float lerpSpeed = 3;
     Rigidbody body;
     Quaternion bodyRotation;
@@ -21,6 +22,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks
     bool isGrounded;
     public TextMeshProUGUI playerName;
     public Transform playerCamera;
+    public Transform gunPoint;
+    public GameObject bullet;
     void Awake()
     {
         //Cursor.lockState = CursorLockMode.Locked;
@@ -32,6 +35,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks
             inputActions.PlayerActions.Look.performed += ctx => lookInput = ctx.ReadValue<Vector2>();
             inputActions.PlayerActions.Look.canceled += ctx => lookInput = ctx.ReadValue<Vector2>();
             inputActions.PlayerActions.Jump.canceled += ctx => jumpInput = true;
+            inputActions.PlayerActions.Fire.canceled += ctx => FireGun();
             body = GetComponent<Rigidbody>();
             isGrounded = false;
             bodyRotation = transform.rotation;
@@ -42,8 +46,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
-        if (photonView.IsMine)
-            playerName.text = photonView.Owner.NickName;
+         playerName.text = photonView.Owner.NickName;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public override void OnEnable()
@@ -63,8 +67,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks
         if (!photonView.IsMine)
             return;
 
-        if(isGrounded)
-            body.velocity = Vector3.zero;
+        body.velocity = new Vector3(0, body.velocity.y, 0);
 
         yRotation = transform.rotation.eulerAngles.y;
         yRotation += lookVelocity * lookInput.x;
@@ -89,5 +92,11 @@ public class PlayerManager : MonoBehaviourPunCallbacks
     {
         if(collision.gameObject.tag == "Ground" && photonView.IsMine)
             isGrounded = true;
+    }
+
+    void FireGun()
+    {
+        GameObject bulletFired = PhotonNetwork.Instantiate(bullet.name, gunPoint.position, Quaternion.identity);
+        bulletFired.GetComponent<Rigidbody>().AddForce(transform.forward * bulletSpeed * 1000 * Time.deltaTime);
     }
 }
