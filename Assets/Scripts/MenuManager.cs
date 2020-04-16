@@ -9,11 +9,18 @@ public class MenuManager : MonoBehaviourPunCallbacks
 {
 
     public InputField playerName;
+    public Button PlayButton;
     // Start is called before the first frame update
     void Start()
     {
+        PlayButton.enabled = false;
         PhotonNetwork.ConnectUsingSettings();
         PhotonNetwork.AutomaticallySyncScene = true;
+    }
+
+    public override void OnConnectedToMaster()
+    {
+        PlayButton.enabled = true;
     }
 
     public void Play()
