@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class LoadCustomizations : MonoBehaviour
+public class LoadCustomizations : MonoBehaviourPunCallbacks
 {
     public List<GameObject> HairModels;
     public List<GameObject> BeardModels;
@@ -15,6 +17,8 @@ public class LoadCustomizations : MonoBehaviour
 
     private void Awake()
     {
+        if (!photonView.IsMine)
+            return;
         cc = GameObject.FindGameObjectWithTag("Customization").GetComponent<CharacterCustomizer>();
         GetClothesMats();
         SetCustomizations();
@@ -22,6 +26,8 @@ public class LoadCustomizations : MonoBehaviour
 
     void GetClothesMats()
     {
+        if (!photonView.IsMine)
+            return;
         var mats = bodyRenderer.GetComponent<Renderer>().materials;
         foreach (var i in mats)
         {
@@ -42,6 +48,8 @@ public class LoadCustomizations : MonoBehaviour
 
     void SetCustomizations()
     {
+        if (!photonView.IsMine)
+            return;
         shirt.SetColor("_BaseColor", cc.currentShirtColor);
         pants.SetColor("_BaseColor", cc.currentPantsColor);
         shoes.SetColor("_BaseColor", cc.currentShoesColor);
@@ -56,6 +64,8 @@ public class LoadCustomizations : MonoBehaviour
 
     public void UpdateHairColor()
     {
+        if (!photonView.IsMine)
+            return;
         if (cc.currentHairModel != HairModels.Count - 1)
             HairModels[cc.currentHairModel].GetComponent<Renderer>().material.SetColor("_BaseColor", cc.currentHairColor);
         if (cc.currentBeardModel != BeardModels.Count - 1)
