@@ -8220,6 +8220,7 @@ GameObject:
   - component: {fileID: 1150875028}
   - component: {fileID: 1150875029}
   - component: {fileID: 8189280679676327604}
+  - component: {fileID: 608764845}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -8478,6 +8479,45 @@ MonoBehaviour:
   - {fileID: 1034548959539419173}
   Glasses: {fileID: 629902365272600008}
   bodyRenderer: {fileID: 5763298570265147615}
+--- !u!114 &608764845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8927795930092660822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 1
+    Name: Idle
+  - Type: 4
+    SynchronizeType: 2
+    Name: Walk
+  - Type: 4
+    SynchronizeType: 2
+    Name: Run
+  - Type: 4
+    SynchronizeType: 2
+    Name: Jump
+  - Type: 4
+    SynchronizeType: 2
+    Name: Crouch
+  - Type: 4
+    SynchronizeType: 2
+    Name: Crouch Walk
+  - Type: 4
+    SynchronizeType: 2
+    Name: Dead
+  m_SynchronizeLayers:
+  - SynchronizeType: 2
+    LayerIndex: 0
 --- !u!1 &9196444227692179077
 GameObject:
   m_ObjectHideFlags: 0

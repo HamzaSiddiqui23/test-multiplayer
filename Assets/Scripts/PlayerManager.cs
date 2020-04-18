@@ -184,11 +184,15 @@ public class PlayerManager : MonoBehaviourPunCallbacks
         RaycastHit hit;
         if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, gunRange))
         {
+            Debug.Log("Firing");
             bulletLine.SetPosition(1, hit.point);
             Debug.Log(hit.collider.gameObject.name);
             PlayerManager pm = hit.transform.GetComponent<PlayerManager>();
-            if(pm!=null && pm.gameObject!= this.gameObject)
+            if (pm != null)
+            {
                 pm.TakeDamage(gunDamage, playerName.text);
+                Debug.Log("Hit Player: "+pm.playerName);
+            }
         }
         else
         {
@@ -200,6 +204,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks
     {
         if (!photonView.IsMine)
             return;
+        Debug.Log("Maraygaya");
         health -= damageAmount;
         healthSlider.value -= damageAmount;
         if (health <= 0)
