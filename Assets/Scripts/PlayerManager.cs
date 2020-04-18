@@ -187,7 +187,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks
             bulletLine.SetPosition(1, hit.point);
             Debug.Log(hit.collider.gameObject.name);
             PlayerManager pm = hit.transform.GetComponent<PlayerManager>();
-            if(pm!=null && pm!=this)
+            if(pm!=null && pm.gameObject!= this.gameObject)
                 pm.TakeDamage(gunDamage, playerName.text);
         }
         else
