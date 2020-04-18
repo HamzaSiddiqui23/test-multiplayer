@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 107448926}
   - component: {fileID: 107448928}
   - component: {fileID: 107448927}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   - component: {fileID: 321457404}
   - component: {fileID: 321457406}
   - component: {fileID: 321457405}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 984892111}
   - component: {fileID: 984892113}
   - component: {fileID: 984892112}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,7 +507,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1017793575}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 1159706217}
   - component: {fileID: 1159706216}
   - component: {fileID: 1159706215}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: PlayerNameCanvas (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -675,7 +675,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1254479396}
   - component: {fileID: 1254479397}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: HealthSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -764,7 +764,7 @@ GameObject:
   - component: {fileID: 1274587807}
   - component: {fileID: 1274587809}
   - component: {fileID: 1274587808}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5649,7 +5649,7 @@ GameObject:
   - component: {fileID: 1679172909}
   - component: {fileID: 1679172911}
   - component: {fileID: 1679172910}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DeathText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5805,7 +5805,7 @@ GameObject:
   - component: {fileID: 1952381353}
   - component: {fileID: 1952381352}
   - component: {fileID: 1952381351}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Canvas (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8408,7 +8408,7 @@ LineRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 1
+        value: 0.23287582
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -8498,25 +8498,25 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: Idle
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Walk
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Run
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Jump
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Crouch
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Crouch Walk
   - Type: 4
-    SynchronizeType: 2
+    SynchronizeType: 1
     Name: Dead
   m_SynchronizeLayers:
-  - SynchronizeType: 2
+  - SynchronizeType: 1
     LayerIndex: 0
 --- !u!1 &9196444227692179077
 GameObject:

@@ -5041,10 +5041,10 @@ MonoBehaviour:
   currentHairModel: 0
   currentBeardModel: 0
   currentHairColor: {r: 0, g: 0, b: 0, a: 0}
-  currentShirtColor: {r: 0, g: 0, b: 0, a: 0}
-  currentPantsColor: {r: 0, g: 0, b: 0, a: 0}
-  currentShoesColor: {r: 0, g: 0, b: 0, a: 0}
-  showGlasses: 0
+  currentShirtColor: {r: 0.9568628, g: 0, b: 0, a: 1}
+  currentPantsColor: {r: 0, g: 0.454902, b: 0.93725497, a: 1}
+  currentShoesColor: {r: 0.47450984, g: 0.31764707, b: 0.16078432, a: 1}
+  showGlasses: 1
 --- !u!1 &1443692892
 GameObject:
   m_ObjectHideFlags: 0
