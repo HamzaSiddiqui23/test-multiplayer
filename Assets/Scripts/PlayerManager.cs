@@ -182,16 +182,19 @@ public class PlayerManager : MonoBehaviourPunCallbacks
         muzzleFlash.Play();
         bulletLine.SetPosition(0, gunPoint.position);
         RaycastHit hit;
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, gunRange))
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, gunRange, Physics.IgnoreRaycastLayer))
         {
-            Debug.Log("Firing");
-            bulletLine.SetPosition(1, hit.point);
-            Debug.Log(hit.collider.gameObject.name);
-            PlayerManager pm = hit.transform.GetComponent<PlayerManager>();
-            if (pm != null)
+            if (hit.collider.gameObject != gameObject)
             {
-                pm.TakeDamage(gunDamage, playerName.text);
-                Debug.Log("Hit Player: "+pm.playerName);
+                Debug.Log("Firing");
+                bulletLine.SetPosition(1, hit.point);
+                Debug.Log(hit.collider.gameObject.name);
+                PlayerManager pm = hit.transform.GetComponent<PlayerManager>();
+                if (pm != null)
+                {
+                    pm.TakeDamage(gunDamage, playerName.text);
+                    Debug.Log("Hit Player: " + pm.playerName);
+                }
             }
         }
         else
