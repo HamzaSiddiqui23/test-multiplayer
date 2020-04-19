@@ -73,6 +73,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks
             isGrounded = false;
             bodyRotation = transform.rotation;
             cameraRotation = playerCamera.transform.localRotation;
+            GetClothesMats();
         }
         if (!photonView.IsMine)
             playerCamera.gameObject.SetActive(false);
@@ -81,7 +82,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks
     void Start()
     {
         playerName.text = photonView.Owner.NickName;
-        GetClothesMats();
         SetCustomizations();
         Cursor.lockState = CursorLockMode.Locked;
         crouch = false;
