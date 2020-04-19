@@ -17,8 +17,6 @@ public class LoadCustomizations : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-        if (!photonView.IsMine)
-            return;
         cc = GameObject.FindGameObjectWithTag("Customization").GetComponent<CharacterCustomizer>();
         GetClothesMats();
         SetCustomizations();

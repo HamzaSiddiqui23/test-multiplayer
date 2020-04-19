@@ -41,6 +41,13 @@ public class PlayerManager : MonoBehaviourPunCallbacks
     bool isRunning = false;
     bool crouch = false;
     Animator anim;
+    public List<GameObject> HairModels;
+    public List<GameObject> BeardModels;
+    public GameObject Glasses;
+    public GameObject bodyRenderer;
+    Material shirt;
+    Material pants;
+    Material shoes;
 
     void Awake()
     {
@@ -182,10 +189,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks
         muzzleFlash.Play();
         bulletLine.SetPosition(0, gunPoint.position);
         RaycastHit hit;
-        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, gunRange, Physics.IgnoreRaycastLayer))
+        if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, gunRange))
         {
-            if (hit.collider.gameObject != gameObject)
-            {
                 Debug.Log("Firing");
                 bulletLine.SetPosition(1, hit.point);
                 Debug.Log(hit.collider.gameObject.name);
@@ -195,7 +200,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks
                     pm.TakeDamage(gunDamage, playerName.text);
                     Debug.Log("Hit Player: " + pm.playerName);
                 }
-            }
         }
         else
         {
@@ -259,5 +263,53 @@ public class PlayerManager : MonoBehaviourPunCallbacks
         {
             anim.SetBool(parameter.name, false);
         }
+    }
+
+    void GetClothesMats()
+    {
+        if (!photonView.IsMine)
+            return;
+        var mats = bodyRenderer.GetComponent<Renderer>().materials;
+        foreach (var i in mats)
+        {
+            if (i.name == "Shirt (Instance)")
+            {
+                shirt = i;
+            }
+            if (i.name == "Jeans (Instance)")
+            {
+                pants = i;
+            }
+            if (i.name == "Shoes (Instance)")
+            {
+                shoes = i;
+            }
+        }
+    }
+
+    void SetCustomizations()
+    {
+        if (!photonView.IsMine)
+            return;
+        shirt.SetColor("_BaseColor", (Color)photonView.Owner.CustomProperties["shirtColor"]);
+        pants.SetColor("_BaseColor", (Color)photonView.Owner.CustomProperties["pantsColor"]);
+        shoes.SetColor("_BaseColor", (Color)photonView.Owner.CustomProperties["shoesColor"]);
+        HairModels[(int)photonView.Owner.CustomProperties["hairModel"]].SetActive(true);
+        BeardModels[(int)photonView.Owner.CustomProperties["beardModel"]].SetActive(true);
+        UpdateHairColor();
+        if ((bool)photonView.Owner.CustomProperties["hairModel"]) 
+            Glasses.SetActive(true);
+        else
+            Glasses.SetActive(false);
+    }
+
+    public void UpdateHairColor()
+    {
+        if (!photonView.IsMine)
+            return;
+        if ((int)photonView.Owner.CustomProperties["hairModel"] != HairModels.Count - 1)
+            HairModels[(int)photonView.Owner.CustomProperties["hairModel"]].GetComponent<Renderer>().material.SetColor("_BaseColor", (Color)photonView.Owner.CustomProperties["hairColor"]);
+        if ((int)photonView.Owner.CustomProperties["beardModel"] != BeardModels.Count - 1)
+            BeardModels[(int)photonView.Owner.CustomProperties["beardModel"]].GetComponent<Renderer>().material.SetColor("_BaseColor", (Color)photonView.Owner.CustomProperties["hairColor"]);
     }
 }
