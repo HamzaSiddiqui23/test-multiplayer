@@ -41,11 +41,12 @@ public class MenuManager : MonoBehaviourPunCallbacks
 
     public override void OnJoinedRoom()
     {
+        Debug.Log(cc.currentHairColor.ToString());
         ExitGames.Client.Photon.Hashtable style = new ExitGames.Client.Photon.Hashtable();
-        style.Add("hairColor", cc.currentHairColor);
-        style.Add("shirtColor", cc.currentShirtColor);
-        style.Add("pantsColor", cc.currentPantsColor);
-        style.Add("shoesColor", cc.currentShoesColor);
+        style.Add("hairColor",  "#" + ColorUtility.ToHtmlStringRGBA(cc.currentHairColor));
+        style.Add("shirtColor", "#" + ColorUtility.ToHtmlStringRGBA(cc.currentShirtColor));
+        style.Add("pantsColor", "#" + ColorUtility.ToHtmlStringRGBA(cc.currentPantsColor));
+        style.Add("shoesColor", "#" + ColorUtility.ToHtmlStringRGBA(cc.currentShoesColor));
         style.Add("beardModel", cc.currentBeardModel);
         style.Add("hairModel", cc.currentHairModel);
         style.Add("Show Glasses", cc.showGlasses);

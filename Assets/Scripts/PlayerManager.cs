@@ -293,13 +293,23 @@ public class PlayerManager : MonoBehaviourPunCallbacks
     {
         if (!photonView.IsMine)
             return;
-        shirt.SetColor("_BaseColor", (Color)photonView.Owner.CustomProperties["shirtColor"]);
-        pants.SetColor("_BaseColor", (Color)photonView.Owner.CustomProperties["pantsColor"]);
-        shoes.SetColor("_BaseColor", (Color)photonView.Owner.CustomProperties["shoesColor"]);
+        Color newCol;
+        if (ColorUtility.TryParseHtmlString(photonView.Owner.CustomProperties["shirtColor"].ToString(), out newCol))
+        {
+            shirt.SetColor("_BaseColor", newCol);
+        }
+        if (ColorUtility.TryParseHtmlString(photonView.Owner.CustomProperties["pantsColor"].ToString(), out newCol))
+        {
+            pants.SetColor("_BaseColor", newCol);
+        }
+        if (ColorUtility.TryParseHtmlString(photonView.Owner.CustomProperties["shoesColor"].ToString(), out newCol))
+        {
+            shoes.SetColor("_BaseColor", newCol);
+        }
         HairModels[(int)photonView.Owner.CustomProperties["hairModel"]].SetActive(true);
         BeardModels[(int)photonView.Owner.CustomProperties["beardModel"]].SetActive(true);
         UpdateHairColor();
-        if ((bool)photonView.Owner.CustomProperties["hairModel"]) 
+        if ((int)photonView.Owner.CustomProperties["hairModel"] == 1) 
             Glasses.SetActive(true);
         else
             Glasses.SetActive(false);
@@ -309,9 +319,13 @@ public class PlayerManager : MonoBehaviourPunCallbacks
     {
         if (!photonView.IsMine)
             return;
-        if ((int)photonView.Owner.CustomProperties["hairModel"] != HairModels.Count - 1)
-            HairModels[(int)photonView.Owner.CustomProperties["hairModel"]].GetComponent<Renderer>().material.SetColor("_BaseColor", (Color)photonView.Owner.CustomProperties["hairColor"]);
-        if ((int)photonView.Owner.CustomProperties["beardModel"] != BeardModels.Count - 1)
-            BeardModels[(int)photonView.Owner.CustomProperties["beardModel"]].GetComponent<Renderer>().material.SetColor("_BaseColor", (Color)photonView.Owner.CustomProperties["hairColor"]);
+        Color newCol;
+        if (ColorUtility.TryParseHtmlString(photonView.Owner.CustomProperties["hairColor"].ToString(), out newCol))
+        {
+            if ((int)photonView.Owner.CustomProperties["hairModel"] != HairModels.Count - 1)
+                HairModels[(int)photonView.Owner.CustomProperties["hairModel"]].GetComponent<Renderer>().material.SetColor("_BaseColor", newCol);
+            if ((int)photonView.Owner.CustomProperties["beardModel"] != BeardModels.Count - 1)
+                BeardModels[(int)photonView.Owner.CustomProperties["beardModel"]].GetComponent<Renderer>().material.SetColor("_BaseColor", newCol);
+        }
     }
 }
