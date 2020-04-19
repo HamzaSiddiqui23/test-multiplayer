@@ -269,8 +269,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks
 
     void GetClothesMats()
     {
-        if (!photonView.IsMine)
-            return;
         var mats = bodyRenderer.GetComponent<Renderer>().materials;
         foreach (var i in mats)
         {
@@ -291,8 +289,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks
 
     void SetCustomizations()
     {
-        if (!photonView.IsMine)
-            return;
         Color newCol;
         if (ColorUtility.TryParseHtmlString(photonView.Owner.CustomProperties["shirtColor"].ToString(), out newCol))
         {
@@ -317,8 +313,6 @@ public class PlayerManager : MonoBehaviourPunCallbacks
 
     public void UpdateHairColor()
     {
-        if (!photonView.IsMine)
-            return;
         Color newCol;
         if (ColorUtility.TryParseHtmlString(photonView.Owner.CustomProperties["hairColor"].ToString(), out newCol))
         {
