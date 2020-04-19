@@ -5455,7 +5455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: {fileID: 1277652031}
   PlayButton: {fileID: 610704621}
-  cc: {fileID: 0}
+  cc: {fileID: 1382990110}
 --- !u!1 &1743141063
 GameObject:
   m_ObjectHideFlags: 0
