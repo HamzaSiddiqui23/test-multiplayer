@@ -81,6 +81,8 @@ public class PlayerManager : MonoBehaviourPunCallbacks
     void Start()
     {
         playerName.text = photonView.Owner.NickName;
+        GetClothesMats();
+        SetCustomizations();
         Cursor.lockState = CursorLockMode.Locked;
         crouch = false;
     }
