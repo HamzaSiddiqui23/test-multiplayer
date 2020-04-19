@@ -8219,7 +8219,6 @@ GameObject:
   - component: {fileID: 1150875026}
   - component: {fileID: 1150875028}
   - component: {fileID: 1150875029}
-  - component: {fileID: 8189280679676327604}
   m_Layer: 0
   m_Name: PlayerCharacter
   m_TagString: Untagged
@@ -8348,6 +8347,18 @@ MonoBehaviour:
   muzzleFlash: {fileID: 1589258028}
   bulletLine: {fileID: 0}
   bullet: {fileID: 3833367810708998142, guid: 67a124fc97b2e46a6af559617c52a234, type: 3}
+  HairModels:
+  - {fileID: 8282227317369408989}
+  - {fileID: 610316192890035274}
+  - {fileID: 7150910422115457135}
+  - {fileID: 1034548959539419173}
+  BeardModels:
+  - {fileID: 5745137935239362958}
+  - {fileID: 7971566648076023089}
+  - {fileID: 9196444227692179077}
+  - {fileID: 1034548959539419173}
+  Glasses: {fileID: 629902365272600008}
+  bodyRenderer: {fileID: 5763298570265147615}
 --- !u!120 &1150875029
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -8454,30 +8465,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &8189280679676327604
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8927795930092660822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34ea2aca2985d43b2833f4c8a32156fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HairModels:
-  - {fileID: 8282227317369408989}
-  - {fileID: 610316192890035274}
-  - {fileID: 7150910422115457135}
-  - {fileID: 1034548959539419173}
-  BeardModels:
-  - {fileID: 5745137935239362958}
-  - {fileID: 7971566648076023089}
-  - {fileID: 9196444227692179077}
-  - {fileID: 1034548959539419173}
-  Glasses: {fileID: 629902365272600008}
-  bodyRenderer: {fileID: 5763298570265147615}
 --- !u!1 &9196444227692179077
 GameObject:
   m_ObjectHideFlags: 0
