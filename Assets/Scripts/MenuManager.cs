@@ -26,16 +26,16 @@ public class MenuManager : MonoBehaviourPunCallbacks
 
     public void Play()
     {
-        PhotonNetwork.JoinRandomRoom();
+        PhotonNetwork.JoinRoom("LazyTechHQ");
     }
 
-    public override void OnJoinRandomFailed(short returnCode, string message)
+    public override void OnJoinRoomFailed(short returnCode, string message)
     {
         RoomOptions roomOps = new RoomOptions();
         roomOps.IsVisible = true;
         roomOps.IsOpen = true;
         PhotonNetwork.NickName = playerName.text;
-        string roomName = "Room" + Random.Range(0, 1000);
+        string roomName = "LazyTechHQ";
         PhotonNetwork.CreateRoom(roomName, roomOps);
     }
 
